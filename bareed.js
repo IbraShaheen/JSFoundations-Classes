@@ -129,7 +129,7 @@ class Customer extends Person{
   // implement Customer!
   constructor(name,x,y,wallet=10){
     super(name,x,y)
-    this.wallet = new Wallet();
+    this.wallet = new Wallet(10);
   }
 }
 
