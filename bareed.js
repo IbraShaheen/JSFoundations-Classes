@@ -89,8 +89,24 @@ class Person {
  *
  * new vendor = new Vendor(name, x, y);
  **********************************************************/
-class Vendor {
+class Vendor extends Person {
   // implement Vendor!
+  constructor(name,x,y,range=5,price=1){
+  super(name,x,y) 
+  {
+    this.name=name;
+    this.range = range
+    this.price = price
+    this.person = new Person(name,x,y)
+    this.wallet= new Wallet()
+  }
+  }
+  sellTo = (customer, numberOfIceCreams) =>{
+  //  this.customer = customer-this.range
+  this.moveTo(customer.location);
+  customer.wallet.debit(this.price * numberOfIceCreams);
+  this.wallet.credit(this.price * numberOfIceCreams);
+  };
 }
 
 /**********************************************************
@@ -109,9 +125,16 @@ class Vendor {
  *
  * new customer = new Customer(name, x, y);
  **********************************************************/
-class Customer {
+class Customer extends Person{
   // implement Customer!
+  constructor(name,x,y,wallet=10){
+    super(name,x,y)
+    this.wallet = new Wallet();
+  }
 }
+
+
+
 
 export { Point, Wallet, Person, Customer, Vendor };
 
