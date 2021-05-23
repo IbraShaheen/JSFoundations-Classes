@@ -131,6 +131,7 @@ class Customer extends Person{
     super(name,x,y)
     this.wallet = new Wallet(10);
   }
+  _isInRange = (vendor) => vendor <= this.range;
 }
 
 
