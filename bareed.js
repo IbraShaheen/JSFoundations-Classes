@@ -30,6 +30,8 @@ class Point {
   };
 }
 
+let pointOne = new Point(10, 15);
+
 /**********************************************************
  * Wallet: keeps track of money
  *
@@ -43,13 +45,13 @@ class Point {
  **********************************************************/
 class Wallet {
   // implement Wallet!
-  constructor(money = 0) {}
+  constructor(money = 0) {this.money=money;}
+  
+  credit = amount => {this.money +=amount};
 
-  credit = amount => {};
-
-  debit = amount => {};
+  debit = amount => {this.money -= amount};
 }
-
+let walletone = new Wallet(100);
 /**********************************************************
  * Person: defines a person with a name (and feelings)
  *
@@ -59,12 +61,19 @@ class Wallet {
  *
  * moveTo(point): updates the `location` to `point`
  *
- * let person = new Person(name, x, y);
+ * 
  **********************************************************/
 class Person {
   // implement Person!
+  constructor(name,x,y) {
+    // super(location,wallet)
+    this.name=name;
+    this.location = new Point(x,y)
+    this.wallet = new Wallet()
+  }
+ moveTo = (point) => this.location = point
 }
-
+// let person = new Person(hagar, 10, 20);
 /**********************************************************
  * Vendor: defines a vendor
  * Subclasses Person
