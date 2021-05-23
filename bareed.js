@@ -131,10 +131,20 @@ class Customer extends Person{
     super(name,x,y)
     this.wallet = new Wallet(10);
   }
-  _isInRange = (vendor) => vendor <= this.range;
+  // _isInRange = (vendor) => vendor < this.range;
+  _isInRange = (vendor) => this.location.distanceTo(vendor.location) <= vendor.range;
+
+  _haveEnoughMoney = (vendor, numberOfIceCreams) => this.wallet.money >= vendor.price * numberOfIceCreams;
+
+  requestIceCream = (vendor, numberOfIceCreams) => {
+    
+    if(
+      this._isInRange(vendor) && 
+      this._haveEnoughMoney(vendor,numberOfIceCreams)
+      )
+  vendor.sellTo(this, numberOfIceCreams);
+  };
 }
-
-
 
 
 export { Point, Wallet, Person, Customer, Vendor };
